@@ -28,8 +28,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'mydefaultsecretkey')
 # DEBUG = True
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS =os.environ.get("ALLOWED_HOSTS", "").split(",")
-# ['https://dashboard.render.com/project/prj-d3vg9fer433s73crp9u0', 'localhost', '127.0.0.1']
+# os.environ.get("ALLOWED_HOSTS", "").split(",")
+ALLOWED_HOSTS =['https://dashboard.render.com/web/srv-d3vgifjipnbc739ksmag', 'localhost', '127.0.0.1']
 
 
 # Application definition
