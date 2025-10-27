@@ -31,7 +31,9 @@ DEBUG =  False
 
 # os.environ.get('DEBUG', 'True') == 'True'
 # os.environ.get("ALLOWED_HOSTS", "").split(",")
-ALLOWED_HOSTS =['https://cookies-proj.onrender.com/', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['cookies-proj.onrender.com', 'localhost', '127.0.0.1']
+
+# ALLOWED_HOSTS =['https://cookies-proj.onrender.com/', 'localhost', '127.0.0.1']
 
 
 # Application definition
