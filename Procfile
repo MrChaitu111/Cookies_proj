@@ -1,1 +1,1 @@
-gunicorn cookies_proj.wsgi
+gunicorn cookiesproj.wsgi
