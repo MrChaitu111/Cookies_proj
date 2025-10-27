@@ -26,8 +26,10 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'mydefaultsecretkey')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
-DEBUG = os.environ.get('DEBUG', 'True') == 'True'
+DEBUG =  False
 
+
+# os.environ.get('DEBUG', 'True') == 'True'
 # os.environ.get("ALLOWED_HOSTS", "").split(",")
 ALLOWED_HOSTS =['https://dashboard.render.com/web/srv-d3vgifjipnbc739ksmag', 'localhost', '127.0.0.1']
 
