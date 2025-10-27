@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>⚡ Cache Example</title>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <style>
+    body { font-family: Arial; text-align: center; background: #fff8e1; padding-top: 70px; transition: opacity 1s; }
+    .bar { width: 300px; height: 12px; background: #ffecb3; border-radius: 6px; margin: 15px auto; overflow: hidden; }
+    .fill { height: 100%; background: #ffc107; width: 100%; transition: width 1s linear; }
+  </style>
+</head>
+<body>
+  {% if cached_user %}
+    <h2>⚡ Cached Data: <b>{{ cached_user }}</b></h2>
+    <p>Cache expires in <span id="time">5</span> seconds...</p>
+    <div class="bar"><div class="fill" id="bar"></div></div>
+
+    <script>
+      let t = 5;
+      const bar = document.getElementById("bar");
+      const time = document.getElementById("time");
+      const countdown = setInterval(() => {
+        t--;
+        bar.style.width = (t / 5 * 100) + "%";
+        time.textContent = t;
+        if (t <= 0) {
+          clearInterval(countdown);
+          Swal.fire({
+            icon: 'warning',
+            title: '⚡ Cache Expired',
+            text: 'Cached username expired — returning home.',
+            background: '#fff8e1',
+            color: '#795548',
+            showConfirmButton: false,
+            timer: 1800
+          }).then(() => {
+            document.body.style.opacity = 0;
+            setTimeout(() => window.location.href = "{% url 'home' %}", 800);
+          });
+        }
+      }, 1000);
+    </script>
+  {% else %}
+    <h3>❌ Cache expired. Go back to Home.</h3>
+  {% endif %}
+</body>
+</html>

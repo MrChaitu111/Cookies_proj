@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🍪 Cookie Example</title>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <style>
+    body { font-family: Arial; text-align: center; background: #e8f5e9; padding-top: 70px; transition: opacity 1s; }
+    form { background: #fff; padding: 20px; display: inline-block; border-radius: 10px; box-shadow: 0 0 10px #b0dab9; }
+    input[type=text] { padding: 8px; border-radius: 4px; border: 1px solid #ccc; }
+    input[type=submit] { background: #28a745; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; }
+    input[type=submit]:hover { background: #218838; }
+    .bar { width: 300px; height: 12px; background: #d4edda; border-radius: 6px; margin: 15px auto; overflow: hidden; }
+    .fill { height: 100%; background: #28a745; width: 100%; transition: width 1s linear; }
+  </style>
+</head>
+<body>
+  <h2>🍪 Set Cookie (Expires in 5s)</h2>
+  <form method="POST">
+    {% csrf_token %}
+    <input type="text" name="username" placeholder="Enter username" required>
+    <input type="submit" value="Set Cookie">
+  </form>
+
+  {% if cookie_value %}
+    <p>✅ Cookie set for <b>{{ cookie_value }}</b></p>
+    <div class="bar"><div class="fill" id="bar"></div></div>
+    <p id="count">5</p>
+
+    <script>
+      let time = 5;
+      const bar = document.getElementById('bar');
+      const count = document.getElementById('count');
+      const timer = setInterval(() => {
+        time--;
+        bar.style.width = (time / 5 * 100) + "%";
+        count.textContent = time;
+        if (time <= 0) {
+          clearInterval(timer);
+          Swal.fire({
+            icon: 'success',
+            title: '🍪 Cookie Expired',
+            text: 'Username cookie has expired!',
+            background: '#e8f5e9',
+            color: '#155724',
+            showConfirmButton: false,
+            timer: 1800
+          }).then(() => {
+            document.body.style.opacity = 0;
+            setTimeout(() => window.location.href = "{% url 'session_page' %}", 800);
+          });
+        }
+      }, 1000);
+    </script>
+  {% endif %}
+</body>
+</html>
