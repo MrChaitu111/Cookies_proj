@@ -50,7 +50,8 @@ Hosting: Render / Vercel / Railway
 🧰 Setup Instructions
 
 # 1️⃣ Clone the repository
-git clone https://github.com/your-username/cookies-proj.git
+git clone https://github.com/MrChaitu111
+Cookies_proj/cookies-proj.git
 cd cookies-proj
 
 # 2️⃣ Install dependencies
